@@ -32,6 +32,10 @@ The default database username is "root" and password is empty so if you want to 
 
     php artisan migrate --seed
 
+3- Storage Link:
+
+        php artisan storage:link
+
 4- Run the backend project:
 
         php artisan serve

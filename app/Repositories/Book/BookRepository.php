@@ -4,7 +4,7 @@ namespace App\Repositories\Book;
 use App\Models\Book;
 class BookRepository implements BookRepositoryInterface {
 
-    public function all($searchQuery = null, $sortCriteria = 'title')
+    public function all($searchQuery = null, $sortCriteria = 'title', $sortOrder = 'desc')
     {
         $query = Book::query();
 
@@ -14,7 +14,7 @@ class BookRepository implements BookRepositoryInterface {
                 ->orWhere('description', 'like', '%' . $searchQuery . '%');
         }
 
-        $query->orderBy($sortCriteria);
+        $query->orderBy($sortCriteria, $sortOrder);
 
         return $query->paginate(5);
     }

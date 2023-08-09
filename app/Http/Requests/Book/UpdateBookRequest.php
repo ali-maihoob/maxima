@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Book;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class UpdateBookRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class UpdateBookRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return Auth::user()->can('book.update');
     }
 
     /**
@@ -29,6 +30,7 @@ class UpdateBookRequest extends FormRequest
                 'author' => 'required|string',
                 'publication_date' => 'required|date',
                 'description' => 'nullable|string',
+                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             ];
         }
         else {
@@ -37,6 +39,7 @@ class UpdateBookRequest extends FormRequest
                 'author' => 'sometimes|required|string',
                 'publication_date' => 'sometimes|required|date',
                 'description' => 'sometimes|nullable|string',
+                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             ];
         }
     }

@@ -28,13 +28,13 @@ On Linux:
 
 The default database username is "root" and password is empty so if you want to change them, you can update .env file
 
-2- Database Migration
+2- Database Migration with seeder:
 
-    php artisan migrate
+    php artisan migrate --seed
 
-3- Database Seeder
+4- Run the backend project:
 
-    php artisan db:seed
+        php artisan serve
 
 
 ## FrontEnd Configuration

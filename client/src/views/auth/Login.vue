@@ -104,17 +104,17 @@ export default {
             }
         },
         handleSuccess(response) {
-            const token = response.data.data.token;
+            const token = response?.data.data.token;
 
             // Store the token in local storage
             localStorage.setItem('token', token);
-            alert.success(response.data.message);
+            alert.success(response?.data.message);
 
             // Redirect the user to the desired route (e.g., dashboard)
             this.$router.push('/');
         },
         handleFailure(error) {
-            alert.error(error.response.data.message);
+            alert.error(error.response?.data.message);
         },
     },
 };

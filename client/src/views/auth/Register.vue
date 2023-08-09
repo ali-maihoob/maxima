@@ -136,7 +136,7 @@ export default {
             this.$router.push('/login');
         },
         handleFailure(error) {
-            alert.error(error.response.data.message);
+            alert.error(error.response?.data.message);
         },
     },
 };

@@ -8,6 +8,8 @@ use App\Http\Resources\Book\BookResource;
 use App\Http\Requests\Book\StoreBookRequest;
 use App\Http\Requests\Book\UpdateBookRequest;
 use App\Traits\HttpResponse;
+use Illuminate\Http\Request;
+
 
 class BooksController extends Controller
 {
@@ -19,9 +21,13 @@ class BooksController extends Controller
         $this->bookRepository = $bookRepository;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $books = $this->bookRepository->all();
+        $searchQuery = $request->input('q');
+        $sortCriteria = $request->input('sort_by', 'title'); // Default sorting criteria is 'title'
+
+        $books = $this->bookRepository->all($searchQuery, $sortCriteria);
+
         return BookResource::collection($books);
     }
 
@@ -33,6 +39,11 @@ class BooksController extends Controller
     public function update(UpdateBookRequest $request, $id)
     {
         $book = $this->bookRepository->update($id, $request->all());
+        return BookResource::make($book);
+    }
+
+    public function show($id) {
+        $book = $this->bookRepository->find($id);
         return BookResource::make($book);
     }
 

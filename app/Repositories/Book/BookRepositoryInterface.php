@@ -5,7 +5,7 @@ namespace App\Repositories\Book;
 interface BookRepositoryInterface
 {
 
-    public function all();
+    public function all($searchQuery, $sortCriteria);
 
     public function find($id);
 

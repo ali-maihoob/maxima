@@ -21,11 +21,11 @@ class PermissionSeeder extends Seeder
         $adminUser->assignRole('admin');
 
         $bookKeys = [
-            'customer.index',
-            'customer.show',
-            'customer.update',
-            'customer.destroy',
-            'customer.store',
+            'book.index',
+            'book.show',
+            'book.update',
+            'book.destroy',
+            'book.store',
         ];
 
         $bookPermissions = [];

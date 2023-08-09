@@ -4,9 +4,19 @@ namespace App\Repositories\Book;
 use App\Models\Book;
 class BookRepository implements BookRepositoryInterface {
 
-    public function all()
+    public function all($searchQuery = null, $sortCriteria = 'title', $sortOrder = 'desc')
     {
-        return Book::all();
+        $query = Book::query();
+
+        if ($searchQuery) {
+            $query->where('title', 'like', '%' . $searchQuery . '%')
+                ->orWhere('author', 'like', '%' . $searchQuery . '%')
+                ->orWhere('description', 'like', '%' . $searchQuery . '%');
+        }
+
+        $query->orderBy($sortCriteria, $sortOrder);
+
+        return $query->paginate(5);
     }
 
     public function find($id)

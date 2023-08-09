@@ -27,7 +27,7 @@ class AuthController extends Controller
         return $this->success([
             'user' => $user,
             'token' => $token->plainTextToken
-        ]);
+        ], "The user logged in successfully");
     }
 
     public function register(StoreUserRequest $request): \Illuminate\Http\JsonResponse
@@ -43,7 +43,7 @@ class AuthController extends Controller
         return $this->success([
             'user' => $user,
             'token' => $user->createtoken('test')->plainTextToken
-        ]);
+        ], 'You have registered you account successfully.');
     }
 
     public function logout()
